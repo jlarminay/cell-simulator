@@ -1,0 +1,125 @@
+<html>
+
+    <head>
+
+        <meta charset="UTF-8"> 
+
+        <title>Map Maker | Cell Simulator</title>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css">
+        <link rel="stylesheet" type="text/css" href="css/maker.min.css">
+        
+        
+    </head>
+
+    <body>
+
+        <div class="container">
+
+            <div class="butts m-4">
+                <div class="btn btn-secondary mt-2 save" data="url">Generate URL</div>
+                <div class="btn btn-secondary mt-2 save" data="tab">Run Map</div>
+            </div>
+
+            <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="help-tab" data-toggle="tab" href="#tab-help" role="tab" aria-controls="tab-help" aria-selected="true">Instructions</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="map-tab" data-toggle="tab" href="#tab-map" role="tab" aria-controls="tab-map" aria-selected="true">Map Editor</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="clans-tab" data-toggle="tab" href="#tab-clans" role="tab" aria-controls="tab-clans" aria-selected="false">Clans Editor</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="game-tab" data-toggle="tab" href="#tab-game" role="tab" aria-controls="tab-game" aria-selected="false">Game Settings</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+
+                <!-- Help Section -->
+                <div class="tab-pane fade show active text-left" id="tab-help" role="tabpanel" aria-labelledby="help-tab">
+                    <h3 class="text-center">Instructions</h3>
+                    <p class="lead">Welcome to Cell Simulator.</p>
+                    <p>THIS IS A WIP. More info to come.</p>
+                </div>  
+
+                <!-- Map Maker -->
+                <div class="tab-pane fade" id="tab-map" role="tabpanel" aria-labelledby="home-tab">
+                    <h3>Map Editor</h3>
+                    <div class="btn btn-sm btn-secondary mt-2 make-map">Generate New Map</div>
+                    <div class="controls"></div>
+
+                    <table class="map-table">
+                        <tr></tr>
+                    </table>
+                </div>
+
+                <!-- Clans Settings -->
+                <div class="tab-pane fade" id="tab-clans" role="tabpanel" aria-labelledby="tab-clans">
+                    <h3>Clans Editor</h3>
+                    <div class="btn btn-sm btn-secondary m-2 add-clan">Add Team</div>
+                    <table class="table clans-table">
+                        <tr>
+                            <th></th>
+                            <th>Name</th>
+                            <th>Color</th>
+                            <th>Health</th>
+                            <th>Attack</th>
+                            <th>Defence</th>
+                            <th>Evsaion</th>
+                            <th>Lifeloss</th>
+                            <th>Speed</th>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- Game Settings -->
+                <div class="tab-pane fade" id="tab-game" role="tabpanel" aria-labelledby="tab-game">
+                    <h3>Game Settings</h3>
+                    <table class="table game-table">
+                        <tr>
+                            <th width="25%">Spawn Type</th>
+                            <td>
+                                <select class="form-control" id="spawn">
+                                    <option value="false">Set Spawn</option>
+                                    <option value="true">Random Spawn</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th width="25%">Victory Type</th>
+                            <td>
+                                <select class="form-control" id="victory">
+                                    <option value="control">100% Control</option>
+                                    <option value="last">Last Team Standing</option>
+                                    <option value="turn">Turn Limit</option>
+                                    <option value="time">Time Limit</option>
+                                </select>
+                                <input id="limit" class="form-control mt-2 hidden" type="number" min="0" value="0">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th width="25%">Game Speed</th>
+                            <td>
+                                <input id="speed" class="form-control" type="number" min="0" value="0">
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+        <script src="js/maker.min.js"></script>
+        
+    </body>
+
+</html>

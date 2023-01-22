@@ -1,0 +1,220 @@
+<html>
+
+    <head>
+
+        <meta charset="UTF-8"> 
+
+        <title>Cell Simulator</title>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css">
+        <link rel="stylesheet" type="text/css" href="css/index.min.css">
+        
+        
+    </head>
+
+    <body>
+
+        <!-- center display -->
+        <div class="center">
+            <table>
+                <tr>
+                    <td id="text-holder">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <br/>
+                        Loading
+                    </td>
+                </tr>
+            </table>
+        </div>
+        
+        <!-- controls -->
+        <div class="control">
+            <div class="dropdown">
+                <div class="btn btn-secondary menu" data-toggle="dropdown">
+                    <i class="fas fa-bars"></i><div class="title"> Menu</div>
+                </div>
+                <ul class="dropdown-menu" role="menu">
+                    <div class="dropdown-header">Cell Simulator</div>
+                    <div class="dropdown-divider"></div>
+                    <li class="con_play">Pause</li>
+                    <li class="con_play h">Play</li>
+                    <li class="con_rest">Restart</li>
+                    <li class="con_list">Team Scores</li>
+                    <div class="dropdown-divider"></div>
+                    <li class="con_maker">Map Maker</li>
+                    <li class="con_debug">Debug Menu</li>
+                    <li class="con_reset">Reset Settings</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- main container -->
+        <div class="main-container"></div>
+        
+
+        <!-- MODAL game settings -->
+        <div class="modal" id="Modal_debug" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Debug Menu</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body text-center">
+                            <button class="btn btn-sm btn-secondary debug-grid">Toggle Grid</button>
+                            <button class="btn btn-sm btn-secondary debug-arrows">Toggle Arrows</button>
+                            <button class="btn btn-sm btn-secondary debug-points">Toggle Points</button>
+                            <button class="btn btn-sm btn-secondary debug-voice">Toggle Voice</button>
+                            <hr/>
+                            <button class="btn btn-sm btn-secondary test-voice">Voice Test</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODAL game settings -->
+        <div class="modal" id="Modal_sett" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Game Settings</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body text-center row">
+
+                        <div class="col-12 mb-3">
+                            <select class="form-control map">
+                                <option>square</option>
+                                <option>test</option>
+                            </select>
+                            <hr/>
+                        </div>
+
+                        <div class="col-6 mb-3">
+                            <b>Cell Size</b>
+                            <br/>
+                            <small>(Smaller numbers runs slower)</small>
+                        </div>
+                        <div class="col-6 mb-3">
+                            <input type="number" class="cell_size form-control" value="0" min="0">
+                        </div>
+
+                        <div class="col-6 mb-3">                       
+                            <b>Game Speed</b>
+                            <br/>
+                            <small>(Lower the number, faster it plays)</small>
+                        </div>
+                        <div class="col-6 mb-3">
+                            <input type="number" class="game_speed form-control" value="0" min="0">
+                        </div>
+                            
+                        <div class="col-6 mb-3">
+                            <b>Color Mutation</b>
+                            <br/>
+                            <small>(Higher the number, the greater difference in color mutation)</small>
+                        </div>
+                        <div class="col-6 mb-3">
+                            <input type="number" class="col_mutation form-control" value="0" min="0" max="255">
+                        </div>
+
+                        <div class="col-12 debug text-center">
+                            <hr/>
+                            <b>Time/Turn Limit</b>
+                            <br/>
+                            <small>Choose either a time or turn limit. Time is in seconds. Leave blank for non limit</small>
+                            <input type="number" class="limit_time form-control col-5" style="display:inline-block;" placeholder="Time Limit" min="0" >
+                            <input type="number" class="limit_turn form-control col-5" style="display:inline-block;" placeholder="Turn Limit" min="0" >
+                        </div>
+
+                        <div class="col-12 debug text-center">
+                            <hr/>
+                            <b>Debug Menu</b>
+                            <br/>
+                            <button class="btn btn-sm btn-secondary debug-grid">Toggle Grid</button>
+                            <button class="btn btn-sm btn-secondary debug-arrows">Toggle Arrows</button>
+                            <button class="btn btn-sm btn-secondary debug-points">Toggle Points</button>
+                        </div>
+                        
+                        <div class="col-12 mt-4">
+                            <button class="btn btn-primary save">Save & Restart</button>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODAL team settings -->
+        <div class="modal" id="Modal_team" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Team Settings</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body text-center">
+
+                        <div class="cell-control"></div>
+                        
+                        <button class="btn btn-primary add-team mt-2"><i class="fas fa-plus"></i> Add New Team</button>
+                        <button class="btn btn-primary save mt-2">Save & Restart</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Score card -->
+        <div class="card score-holder">
+            <div class="card-header">
+                <i class="fas fa-arrows-alt"></i> Score Card
+                <button type="button" class="close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="card-body text-center">
+                <b class="time">0:0:0</b>
+                <br/>
+                <b>Turn <span class="turn"></span></b>
+                <div class="show_count"></div>
+            </div>
+        </div>
+
+        <!-- MODAL for winner -->
+        <div class="modal" id="Modal_won" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body text-center">
+                        <h2><i class="fas fa-trophy" id="trophy"></i></h2>
+                        <h3><span id="team"></span> are the winners!!!</h3>
+                        <h4>It only took <span id="time"></span></h4>
+                        <h5>Turn <span id="turn"></span></h5>
+                        <hr/>
+                        <div class="show_count"></div>
+                        
+                        <button class="btn btn-primary con_rest mt-2">Restart</button>
+                        <button class="btn btn-secondary con_maker mt-2">Map Maker</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+        <script src="js/index.min.js"></script>
+        
+    </body>
+
+</html>

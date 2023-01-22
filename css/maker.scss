@@ -1,0 +1,73 @@
+body {
+    text-align: center;
+}
+
+.hidden {
+    display: none;
+}
+
+
+
+#myTabContent {
+    text-align: center;
+    border: 1px solid;
+    border-color: #fff #dee2e6 #dee2e6;
+    padding: 10px;
+
+    #tab-map {
+        .controls {
+            margin: 10px;
+            text-align: center;
+        
+            .paint {
+                width: 26px;
+                border-radius: 50%;
+                border: 1px solid black;
+                margin: 10px;
+                display: inline-block;
+                cursor: pointer;
+
+                &.active {
+                    -webkit-box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.75);
+                    -moz-box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.75);
+                    box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.75);
+                }
+            }
+        }
+
+        .map-table {
+            margin: auto;
+
+            td {
+                font-family: monospace;
+                cursor: crosshair;
+                padding: 5px;
+                font-size: 12px;
+                width: 14px;
+                height: 25px;
+                text-align: center;
+                border: 1px solid grey;
+
+                -webkit-touch-callout: none; /* iOS Safari */
+                -webkit-user-select: none; /* Safari */
+                -khtml-user-select: none; /* Konqueror HTML */
+                -moz-user-select: none; /* Firefox */
+                -ms-user-select: none; /* Internet Explorer/Edge */
+                user-select: none;
+            }
+        }
+    }
+
+    #tab-clans {
+        .clans-table {
+            td {
+                text-decoration: underline dotted;
+            }
+        }
+    }
+
+    #tab-game {
+
+    }
+
+}

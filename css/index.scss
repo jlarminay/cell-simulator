@@ -1,0 +1,250 @@
+@mixin transition($time) {
+    -webkit-transition: all $time linear;
+    -moz-transition: all $time linear;
+    -o-transition: all $time linear;
+    transition: all $time linear;
+}
+
+@mixin rotate($d){
+    -webkit-transform: rotate($d);
+    -moz-transform: rotate($d);
+    -ms-transform: rotate($d);
+    -o-transform: rotate($d);
+    transform: rotate($d);
+}
+
+html, body {
+	margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: lightgrey;
+}
+
+.h {
+    display: none;
+}
+
+.center {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+
+    table {
+        width: 100%;
+        height: 100%;
+    }
+    #text-holder {
+        text-align: center;
+        font-weight: bold;
+        font-size: 100px;
+    }
+}
+
+.score-holder {
+    position: fixed;
+    top: 60px;
+    left: 10px;
+    display: none;
+
+    table {
+        font-size: 14px;
+    }
+    
+    .card-header {
+        cursor: move;
+    }
+}
+
+.main-container {
+    min-width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.control {
+	float: left;
+    position: absolute;
+    z-index: 1000000;
+
+    .menu {
+        margin: 10px;
+        font-weight: bold;
+        font-size: 20px;
+        border-radius: 20px;
+        line-height: 25px;
+        border: 3px solid white;
+
+        i {
+            position: relative;
+            top: -2px;
+        }
+
+        .title {
+            display: inline-block;
+            vertical-align: bottom;
+            overflow: hidden;
+            width: 0px;
+            margin-left: 0;
+            @include transition(0.3s);
+        }
+
+        &:hover {
+            .title {
+                margin-left: 4px;
+                width: 55px;
+            }
+        }
+    }
+
+    .dropdown-menu {
+        padding: 0;
+        margin-top: 5px;
+
+        .dropdown-header {
+            padding: 2px 10px;
+            font-size: 20px;
+            text-align: center;
+
+            sup {
+                text-decoration: none;
+            }
+        }
+        .dropdown-divider {
+            margin: 0;
+        }
+
+        li {
+            padding: 5px 10px;
+            cursor: pointer;
+            @include transition(0.2s);
+
+            &:last-of-type {
+                border-bottom-left-radius: .25rem;
+                border-bottom-right-radius: .25rem;
+            }
+
+            &:hover {
+                background-color: lightgrey;
+                color: black;
+            }
+        }
+    }
+}
+
+
+.box {
+	display: inline-block;
+    font-size: 0.8vw;
+    overflow: hidden;
+    position: relative;
+
+    span {
+        position: absolute;
+        display: none;
+    }
+
+    img {
+        width: 100%;
+        height: auto;
+        display: none;
+        position: absolute;
+    }
+
+    //all directions of arrow
+    &.none img {
+        display: none!important;
+    }
+    &.top img {
+        @include rotate(0deg);
+    }
+    &.top-right img {
+        @include rotate(45deg);
+    }
+    &.right img {
+        @include rotate(90deg);
+    }
+    &.bottom-right img {
+        @include rotate(135deg);
+    }
+    &.bottom img {
+        @include rotate(180deg);
+    }
+    &.bottom-left img {
+        @include rotate(225deg);
+    }
+    &.left img {
+        @include rotate(270deg);
+    }
+    &.top-left img {
+        @include rotate(315deg);
+    }
+
+    //
+    &[state^=wall-]::before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+    }
+    &[state=wall-up]::before{
+        background: url(../media/wall-up.png);
+        background-position: top;
+        background-size: cover;
+    }
+    &[state=wall-right]::before{
+        background: url(../media/wall-right.png);
+        background-position: right;
+        background-size: cover;
+    }
+    &[state=wall-down]::before{
+        background: url(../media/wall-down.png);
+        background-position: bottom;
+        background-size: cover;
+    }
+    &[state=wall-left]::before{
+        background: url(../media/wall-left.png);
+        background-position: left;
+        background-size: cover;
+    }
+}
+
+#clan_holder {
+	overflow-x: scroll;
+}
+
+.clan_hold {
+	border-collapse: collapse;
+	border: 1px solid lightgrey;
+}
+th,
+td {
+	border: 1px solid lightgrey;
+	padding: 10px;
+}
+
+
+.min-close,
+.min-add {
+	padding: 5px;
+}
+.min-close:hover,
+.min-add:hover {
+	color: grey;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+.debug_off {
+	display: none;
+}
+
+
+#trophy {
+    font-size: 70px;
+    padding: 20px;
+}
